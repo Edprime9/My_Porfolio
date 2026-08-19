@@ -1,0 +1,99 @@
+/* Base resets and desktop navigation styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: black;
+}
+
+/* Hide the checkbox and hamburger icon on desktop screens */
+.menu-toggle,
+.hamburger {
+  display: none;
+}
+
+/* Responsive Mobile Styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  /* Style the 3 spans into hamburger bars */
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+
+  /* Position the mobile menu offscreen by default */
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: -100%; /* Hides the menu off to the right side */
+    flex-direction: column;
+    background-color: #333;
+    width: 100%;
+    text-align: center;
+    gap: 0;
+    transition: all 0.5s ease;
+  }
+
+  .nav-links li {
+    padding: 20px 0;
+  }
+
+  /* --- THE CHCKBOX HACK MECHANICS --- */
+
+  /* 1. Slide the menu into view when the checkbox is checked */
+  .menu-toggle:checked ~ .nav-links {
+    right: 0;
+  }
+
+  /* 2. Animate the top bar to rotate down into an 'X' */
+  .menu-toggle:checked ~ .hamburger .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  /* 3. Hide the middle bar */
+  .menu-toggle:checked ~ .hamburger .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  /* 4. Animate the bottom bar to rotate up into an 'X' */
+  .menu-toggle:checked ~ .hamburger .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
